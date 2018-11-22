@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Associative Array</title>
+  </head>
+  <body>
+    <form id = "f">
+      <label>Value 1 :  </label> <input type="text" id = "first" /><br/>
+      <label>Value 2 :  </label> <input type="text" id = "second"/><br/>
+      <label>Value 3 :  </label> <input type="text" id = "third" /><br/>
+      <label>Value 4 :  </label> <input type="text" id = "four"  /><br/>
+      <button id="validate">Validate</button>
+    </form>
+    <div id = "result"></div>
+    <script>
+      document.getElementById('validate').addEventListener('click',function (evnt){
+        evnt.preventDefault(); //如果事件可以被取消，就取消事件（即取消事件的預設行為）。但不會影響事件的傳遞，事件仍會繼續傳遞`。假設無這行事件的顯示會被收回
+
+        var elems = document.getElementById("f").elements;
+        var elemArray = new Object();
+        for (var i = 0; i < elems.length; i++){
+          if(elems[i].type == "text")
+            elemArray[elems[i].id] = elems[i].value;
+        }
+        var str = '';
+        Object.keys(elemArray).forEach(function (key){
+          var value = elemArray[key];
+          str += key + '->' + value + '<br />';
+        });
+        document.getElementById("result").innerHTML = str;
+      },false);
+    </script>
+  </body>
+</html>
